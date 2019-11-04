@@ -10,39 +10,15 @@ import android.widget.Button;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    Button btnLogin;
-    Button btnRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        btnLogin=(Button)findViewById(R.id.btn_Login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLogin();
-            }
-        });
-        btnRegister=(Button)findViewById(R.id.btn_Register);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRegister();
-            }
-        });
+
     }
 
 
-    public void openRegister()
-    {
-        Intent intentReg= new Intent(this,RegisterActivity.class);
-        startActivity(intentReg);
-    }
 
-    public void openLogin()
-    {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
 }
