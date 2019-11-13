@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    
+
     <TextView
         android:id="@+id/edit_Name"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
-        android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
         android:text="Welcome"
         android:textSize="40dp" />
 
@@ -19,27 +19,22 @@
         android:id="@+id/btn_Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_alignParentLeft="true"
-
-
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="100dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="200dp"
         android:text="Login" />
 
     <Button
         android:id="@+id/btn_Register"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="104dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="200dp"
         android:text="Register" />
 
 </RelativeLayout>
