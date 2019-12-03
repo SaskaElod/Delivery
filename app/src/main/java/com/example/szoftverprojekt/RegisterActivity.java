@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name,email,password,confirmpassword;
     Button register;
+    DatabaseReference databaseUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         confirmpassword=findViewById(R.id.confirmpaswword);
         register=findViewById(R.id.register);
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,13 +40,41 @@ public class RegisterActivity extends AppCompatActivity {
                 if(check(nametext,emailtext,passwordtext,confirmpasswordtext))
                 {
                     Toast.makeText(getBaseContext(),"Registration was succesful!",Toast.LENGTH_LONG).show();
-                    //TODO database update
+                    addUser();
                     finish();
                 }
             }
         });
 
     }
+    private void addUser()
+    {
+        String  username=name.getText().toString().trim();
+        String useremail=email.getText().toString().trim();
+        String userpassword=password.getText().toString().trim();
+        if(!TextUtils.isEmpty(username) )
+        {
+
+
+
+                String id=databaseUsers.push().getKey();
+                User user=new User(id,username,useremail,userpassword);
+                databaseUsers.child(id).setValue(user);
+                Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
+
+
+
+
+        }else
+        {
+            Toast.makeText(RegisterActivity.this,"Error",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
     boolean check(String nametext,String emailtext,String passwordtext,String confirmpasswordtext)
     {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
