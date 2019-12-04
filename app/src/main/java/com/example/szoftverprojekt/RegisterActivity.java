@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     EditText name,email,password,confirmpassword;
     Button register;
     DatabaseReference databaseUsers;
@@ -23,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("Hello, World!");
         name=findViewById(R.id.name);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
