@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String id=databaseUsers.push().getKey();
                 User user=new User(id,username,useremail,userpassword);
-                databaseUsers.child(id).setValue(user);
+                databaseUsers.child(username).setValue(user);
                 Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
 
 
