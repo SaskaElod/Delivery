@@ -1,53 +1,90 @@
 package com.example.szoftverprojekt;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class LoginActivity extends AppCompatActivity {
 
-    EditText email,password;
+    EditText name,password;
     Button login;
+    FirebaseDatabase databaseUsers;
+    DatabaseReference ref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email=findViewById(R.id.edt_Email);
+        name=findViewById(R.id.edt_Name);
         password=findViewById(R.id.edt_Password);
         login=(Button)findViewById(R.id.btn_Login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailtext,passwordtext;
+        ref = FirebaseDatabase.getInstance().getReference().child("users");
 
-                emailtext=email.getText().toString().trim();
-                passwordtext=password.getText().toString().trim();
-
-                if(check(emailtext,passwordtext))
-                {
-                    Toast.makeText(getBaseContext(),"Login was succesful!",Toast.LENGTH_LONG).show();
-                    finish();
-                }
-            }
-        });
 
 
     }
-    boolean check(String emailtext,String passwordtext)
+    String pin;
+    String userID;
+    public void btnLogin(View view)
     {
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if(emailtext.isEmpty())
-        {   Toast.makeText(getBaseContext(),"Email field is empty!",Toast.LENGTH_LONG).show();
-            return false;
+        String nametext=name.getText().toString().trim();;
+        String passwordtext=password.getText().toString().trim();;
+        if(!check(nametext,passwordtext))
+        {
+            userID=name.getText().toString();
+            pin=password.getText().toString();
+            if(ref.child(userID)!=null){
+                ref.child(userID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user=dataSnapshot.getValue(User.class);
+                        if(pin.equals(user.getPassword()))
+                        {
+                            Toast.makeText(getBaseContext(),"Login was succesful!",Toast.LENGTH_LONG).show();
+                            Intent start=new Intent(LoginActivity.this, MenuActivity.class);
+                            startActivity(start);
+                        }
+                        else
+                        {
+                            Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(getBaseContext(),"User doesn't exist!",Toast.LENGTH_LONG).show();
+            }
         }
         else
-        if(!emailtext.matches(emailPattern))
         {
-            Toast.makeText(getBaseContext(),"Email is invalid!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    boolean check(String emailtext,String passwordtext)
+    {
+
+        if(emailtext.isEmpty())
+        {   Toast.makeText(getBaseContext(),"Name field is empty!",Toast.LENGTH_LONG).show();
             return false;
         }
         else

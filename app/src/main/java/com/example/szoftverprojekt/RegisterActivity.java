@@ -1,5 +1,6 @@
 package com.example.szoftverprojekt;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,8 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -24,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");
         name=findViewById(R.id.name);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
@@ -40,10 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
                 emailtext=email.getText().toString().trim();
                 passwordtext=password.getText().toString().trim();
                 confirmpasswordtext=confirmpassword.getText().toString().trim();
+
                 if(check(nametext,emailtext,passwordtext,confirmpasswordtext))
                 {
-                    Toast.makeText(getBaseContext(),"Registration was succesful!",Toast.LENGTH_LONG).show();
                     addUser();
+                    Toast.makeText(getBaseContext(),"Registration was succesful!",Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
@@ -52,17 +55,38 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void addUser()
     {
-        String  username=name.getText().toString().trim();
+
         String useremail=email.getText().toString().trim();
         String userpassword=password.getText().toString().trim();
+        final String username=name.getText().toString().trim();
         if(!TextUtils.isEmpty(username) )
         {
 
 
+           /* databaseUsers.child("users").child("email").addListenerForSingleValueEvent(new ValueEventListener() {// ez kellene leelenorizze h az adatbaziba mar megvane a user
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user=dataSnapshot.getValue(User.class);
+                    if(dataSnapshot.exists())
+                    {
+                        Toast.makeText(RegisterActivity.this, "User exists", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else
+                    {
+                        databaseUsers.child(username).setValue(user);
+                        Toast.makeText(RegisterActivity.this, "User sucesfullly added", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });*/
                 String id=databaseUsers.push().getKey();
-                User user=new User(id,username,useremail,userpassword);
-                databaseUsers.child(id).setValue(user);
+                User user=new User(useremail,userpassword);
+                databaseUsers.child(username).setValue(user);
                 Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
 
 
@@ -80,7 +104,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     boolean check(String nametext,String emailtext,String passwordtext,String confirmpasswordtext)
     {
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if(nametext.isEmpty())
             {Toast.makeText(getBaseContext(),"Name field is empty!",Toast.LENGTH_LONG).show();
                 return false;
@@ -91,12 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
                 return false;
             }
             else
-                if(!emailtext.matches(emailPattern))
-                {
-                    Toast.makeText(getBaseContext(),"Email is invalid!",Toast.LENGTH_LONG).show();
-                    return false;
-                }
-                else
                 {
                     if(passwordtext.isEmpty())
                     {   Toast.makeText(getBaseContext(),"Password field is empty!",Toast.LENGTH_LONG).show();
