@@ -61,8 +61,8 @@ public class PizzaActivity extends AppCompatActivity {
                     Log.d("TAAAAAAAG", name);
                     Log.d("BBBBBBBBBBB", price);
                     Log.d("CCCCCCCCCCC", description);
-                    Product pizza = new Product(name,price,description);
-                    pizzaList.add(pizza);
+                    Product burger = new Product(name,price,description);
+                    pizzaList.add(burger);
 
 
 
@@ -84,24 +84,7 @@ public class PizzaActivity extends AppCompatActivity {
         databaseUsers.addListenerForSingleValueEvent(eventListener);
 
 
-    }/*
-    private void addPizza()
-    {
-
-        //String useremail=email.getText().toString().trim();
-        //String userpassword=password.getText().toString().trim();
-       // final String username=name.getText().toString().trim();
-       String id=databaseUsers.push().getKey();
-       Pizza pizza=new Pizza(name,price,description);
-       databaseUsers.child(username).setValue(user);
-       Toast.makeText(this,"Pizza added",Toast.LENGTH_LONG).show();
-
-
-
-
-
-    }*/
-
+    }
 
 
 

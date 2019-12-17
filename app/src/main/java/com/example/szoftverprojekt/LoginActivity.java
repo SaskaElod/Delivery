@@ -56,14 +56,10 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 String name = ds.getValue(String.class);
                                 Log.d("TAAAAAAAG", name);
-                                if(userID==name)
-                                {
-                                    Toast.makeText(LoginActivity.this, "This user exist", Toast.LENGTH_SHORT).show();
-                                }
-                                else
+                                if(userID!=name)
                                 {
                                     if(pin.equals(user.getPassword())) {
-                                        Toast.makeText(getBaseContext(), "Login succesful!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_LONG).show();
                                         Intent start = new Intent(LoginActivity.this, MenuActivity.class);
                                         startActivity(start);
                                     }
@@ -71,7 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                                     {
                                         Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
                                     }
+
                                 }
+                                else
+                                {
+
+                                    Toast.makeText(LoginActivity.this, "This user didn't exist", Toast.LENGTH_SHORT).show();
+
+
+                            }
 
 
 
