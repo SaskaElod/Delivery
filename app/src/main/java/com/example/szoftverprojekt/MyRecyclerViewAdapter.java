@@ -13,28 +13,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MyPizzaRecyclerViewAdapter extends RecyclerView.Adapter<MyPizzaRecyclerViewAdapter.ViewHolder> {
+public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Pizza> mData;
+    private ArrayList<Product> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-
+    private String url;
 
 
     // data is passed into the constructor
-    MyPizzaRecyclerViewAdapter(Context context, ArrayList<Pizza> data) {
+    MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context=context;
+        this.url=url;
     }
 
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.pizzaonerow, parent, false);
+        View view = mInflater.inflate(R.layout.productonerow, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,8 +43,7 @@ public class MyPizzaRecyclerViewAdapter extends RecyclerView.Adapter<MyPizzaRecy
     public void onBindViewHolder(ViewHolder holder, int position) {
         //db=new DatabaseFull(getCon);
         //holder.myTextView.setText(animal);
-        String url="http://www.pizzativoli.ro/images/menu/Chicken-Pizza.jpg";
-        Pizza one=mData.get(position);
+        Product one=mData.get(position);
         Glide.with(context).load(url).into(holder.picture);
         holder.name.setText(one.getName());
         holder.description.setText(one.getDescription());

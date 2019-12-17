@@ -7,28 +7,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PizzaActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private MyPizzaRecyclerViewAdapter adapter;
+    private MyRecyclerViewAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Pizza> pizzaList=new ArrayList<>();
+    private ArrayList<Product> productList =new ArrayList<>();
+    private String url ="http://www.pizzativoli.ro/images/menu/Chicken-Pizza.jpg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza);
-        Pizza pizza1=new Pizza("asd","11","asdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Pizza pizza2=new Pizza("asdsd","12","asdasd");
-        Pizza pizza3=new Pizza("asdadsa","15","asdasd");
-        pizzaList.add(pizza1);
-        pizzaList.add(pizza2);
-        pizzaList.add(pizza3);
+        Product product1 =new Product("asd","11 lei","asdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Product product2 =new Product("asdsd","12 lei","asdasd");
+        Product product3 =new Product("asdadsa","15 lei","asdasd");
+        productList.add(product1);
+        productList.add(product2);
+        productList.add(product3);
         recyclerView=findViewById(R.id.rvpizza);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter=new MyPizzaRecyclerViewAdapter(getBaseContext(),pizzaList);
+        adapter=new MyRecyclerViewAdapter(getBaseContext(), productList,url);
         recyclerView.setAdapter(adapter);
 
     }
