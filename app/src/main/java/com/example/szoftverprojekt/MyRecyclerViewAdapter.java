@@ -71,6 +71,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             description = itemView.findViewById(R.id.pizzadescription);
             price=itemView.findViewById(R.id.pizzaprice);
             addbutton=itemView.findViewById(R.id.addbutton);
+            addbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             itemView.setOnClickListener(this);
         }
 
