@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,16 +51,38 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         User user=dataSnapshot.getValue(User.class);
-                        if(pin.equals(user.getPassword()))
-                        {
-                            Toast.makeText(getBaseContext(),"Login was succesful!",Toast.LENGTH_LONG).show();
-                            Intent start=new Intent(LoginActivity.this, MenuActivity.class);
-                            startActivity(start);
-                        }
-                        else
-                        {
-                            Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
-                        }
+
+                            for(DataSnapshot ds : dataSnapshot.getChildren())
+                            {
+                                String name = ds.getValue(String.class);
+                                Log.d("TAAAAAAAG", name);
+                                if(userID==name)
+                                {
+                                    Toast.makeText(LoginActivity.this, "This user exist", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    if(pin.equals(user.getPassword())) {
+                                        Toast.makeText(getBaseContext(), "Login succesful!", Toast.LENGTH_LONG).show();
+                                        Intent start = new Intent(LoginActivity.this, MenuActivity.class);
+                                        startActivity(start);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+
+
+
+
+                            }
+
+
+
+
+
                     }
 
                     @Override
