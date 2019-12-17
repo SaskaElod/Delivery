@@ -2,16 +2,16 @@ package com.example.szoftverprojekt;
 
 import android.media.Image;
 
-public class Pizza {
+public class Product {
     String name;
     String price;
     String description;
 
-    public Pizza(){
+    public Product(){
 
     }
 
-    public Pizza(String name,String price,String description){
+    public Product(String name, String price, String description){
         this.name=name;
         this.price=price;
         this.description=description;

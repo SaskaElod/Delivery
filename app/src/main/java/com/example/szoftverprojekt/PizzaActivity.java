@@ -24,28 +24,29 @@ public class PizzaActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private MyPizzaRecyclerViewAdapter adapter;
+    private MyRecyclerViewAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private static ArrayList<Pizza> pizzaList=new ArrayList<>();
+    private static ArrayList<Product> pizzaList=new ArrayList<>();
     DatabaseReference databaseUsers;
     String name,price,description;
+    private String url ="http://www.pizzativoli.ro/images/menu/Chicken-Pizza.jpg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza);
         databaseUsers = FirebaseDatabase.getInstance().getReference("pizzas");
-        Pizza pizza1=new Pizza("Mexicana","19 lej","Streaky bacon rashers, smoky honey ham, pepperoni, Italian sausage, lightly seasoned beef on rich BBQ sauce on a Personal Pan");
-        Pizza pizza2=new Pizza("Hawai","22 lej","Smoky honey ham, juicy pineapple & mozzarella");
-        Pizza pizza3=new Pizza("Magyaros","25 lej","Tender chicken, streaky bacon rashers, diced tomato, onion  & mozzarella finished with smoky BBQ drizzle");
-        Pizza pizza4=new Pizza("The Carnivore","20 lej","With pepperoni, sausage, salami, mushrooms, onions, and green peppers.");
-        Pizza pizza5=new Pizza("Susage Supreme","22 lej","Cajun sausage, red peppers, onions, and mushrooms.");
-        Pizza pizza6=new Pizza("Chipotle Chicken","25 lej","Grilled chicken in chipotle marinade with sausage, jalapenos, onions, mushrooms, and bell peppers.");
-        Pizza pizza7=new Pizza("Hyphy Pizza","26 lej","Jalapenos, pepperoni, olives, and pineapples.");
-        Pizza pizza8=new Pizza("Magic Mushroom","23","Portobello, crimini, shiitake, white button, and olives.");
-        Pizza pizza9=new Pizza("Garlic Chicken","24 lej","Grilled chicken, red pepper, basil, and garlic.");
-        Pizza pizza10=new Pizza("Amici's Combo Pizza","18 lej","Pepperoni, meatball, bacon, sautéed mushrooms, and black olives.");
-        Pizza pizza11=new Pizza("Spicy Pepper Chicken Pizza","20 lej","Sliced chicken breast, roasted red peppers, caramelized onions, cilantro, oregano, and hot red pepper flakes. No tomato sauce.");
-        Pizza pizza12=new Pizza("Trentino Pizza","25 lej","Mozzarella, parmesan, crumbled feta, baby spinach, red onions, pancetta, herbs, and meyer lemon olive oil. No tomato sauce.");
+        Product pizza1=new Product("Mexicana","19 lej","Streaky bacon rashers, smoky honey ham, pepperoni, Italian sausage, lightly seasoned beef on rich BBQ sauce on a Personal Pan");
+        Product pizza2=new Product("Hawai","22 lej","Smoky honey ham, juicy pineapple & mozzarella");
+        Product pizza3=new Product("Magyaros","25 lej","Tender chicken, streaky bacon rashers, diced tomato, onion  & mozzarella finished with smoky BBQ drizzle");
+        Product pizza4=new Product("The Carnivore","20 lej","With pepperoni, sausage, salami, mushrooms, onions, and green peppers.");
+        Product pizza5=new Product("Susage Supreme","22 lej","Cajun sausage, red peppers, onions, and mushrooms.");
+        Product pizza6=new Product("Chipotle Chicken","25 lej","Grilled chicken in chipotle marinade with sausage, jalapenos, onions, mushrooms, and bell peppers.");
+        Product pizza7=new Product("Hyphy Pizza","26 lej","Jalapenos, pepperoni, olives, and pineapples.");
+        Product pizza8=new Product("Magic Mushroom","23","Portobello, crimini, shiitake, white button, and olives.");
+        Product pizza9=new Product("Garlic Chicken","24 lej","Grilled chicken, red pepper, basil, and garlic.");
+        Product pizza10=new Product("Amici's Combo Pizza","18 lej","Pepperoni, meatball, bacon, sautéed mushrooms, and black olives.");
+        Product pizza11=new Product("Spicy Pepper Chicken Pizza","20 lej","Sliced chicken breast, roasted red peppers, caramelized onions, cilantro, oregano, and hot red pepper flakes. No tomato sauce.");
+        Product pizza12=new Product("Trentino Pizza","25 lej","Mozzarella, parmesan, crumbled feta, baby spinach, red onions, pancetta, herbs, and meyer lemon olive oil. No tomato sauce.");
 
         databaseUsers=FirebaseDatabase.getInstance().getReference().child("pizzas");
 
@@ -60,7 +61,7 @@ public class PizzaActivity extends AppCompatActivity {
                     Log.d("TAAAAAAAG", name);
                     Log.d("BBBBBBBBBBB", price);
                     Log.d("CCCCCCCCCCC", description);
-                    Pizza pizza = new Pizza(name,price,description);
+                    Product pizza = new Product(name,price,description);
                     pizzaList.add(pizza);
 
 
@@ -69,7 +70,7 @@ public class PizzaActivity extends AppCompatActivity {
                 Log.d("FFFFFFF", String.valueOf(pizzaList));
                 recyclerView=findViewById(R.id.rvpizza);
                 recyclerView.setLayoutManager(new LinearLayoutManager(PizzaActivity.this));
-                adapter=new MyPizzaRecyclerViewAdapter(getBaseContext(),pizzaList);
+                adapter=new MyRecyclerViewAdapter(getBaseContext(),pizzaList,url);
                 recyclerView.setAdapter(adapter);
             }
 
