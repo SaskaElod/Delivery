@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         {
 
 
-           /* databaseUsers.child("users").child("email").addListenerForSingleValueEvent(new ValueEventListener() {
+           /* databaseUsers.child("users").child("email").addListenerForSingleValueEvent(new ValueEventListener() {// ez kellene leelenorizze h az adatbaziba mar megvane a user
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     User user=dataSnapshot.getValue(User.class);
