@@ -1,4 +1,4 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.szoftverprojekt.R;
+import com.example.szoftverprojekt.Object.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,14 +58,10 @@ public class LoginActivity extends AppCompatActivity {
                             {
                                 String name = ds.getValue(String.class);
                                 Log.d("TAAAAAAAG", name);
-                                if(userID==name)
-                                {
-                                    Toast.makeText(LoginActivity.this, "This user exist", Toast.LENGTH_SHORT).show();
-                                }
-                                else
+                                if(userID!=name)
                                 {
                                     if(pin.equals(user.getPassword())) {
-                                        Toast.makeText(getBaseContext(), "Login succesful!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(), "Login successful!", Toast.LENGTH_LONG).show();
                                         Intent start = new Intent(LoginActivity.this, MenuActivity.class);
                                         startActivity(start);
                                     }
@@ -71,7 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                                     {
                                         Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
                                     }
+
                                 }
+                                else
+                                {
+
+                                    Toast.makeText(LoginActivity.this, "This user didn't exist", Toast.LENGTH_SHORT).show();
+
+
+                            }
 
 
 

@@ -1,4 +1,4 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.szoftverprojekt.Object.Product;
+import com.example.szoftverprojekt.Interface.ProductInterface;
+import com.example.szoftverprojekt.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url,ProductInterface mClickListener) {
+    public MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url,ProductInterface mClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context=context;
@@ -86,8 +89,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             //if (mClickListener != null) mClickListener.onItemClick(name.getText().toString(),price.getText().toString());
             int position=getLayoutPosition();
             product=mData.get(position);
-            productname=product.name;
-            productprice=product.price;
+            productname=product.getName();
+            productprice=product.getPrice();
             mClickListener.onItemClick(productname,productprice);
         }
     }

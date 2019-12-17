@@ -1,4 +1,4 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Object;
 
 public class User {
     private String email;

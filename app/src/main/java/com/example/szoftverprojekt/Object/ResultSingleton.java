@@ -1,4 +1,4 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Object;
 
 import java.util.ArrayList;
 
@@ -24,5 +24,9 @@ public class ResultSingleton {
     public void insertresult(Product product)
     {
         result.add(product);
+    }
+    public void removeresult(Product product)
+    {
+        result.remove(product);
     }
 }

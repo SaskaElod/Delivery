@@ -1,9 +1,7 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,11 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.szoftverprojekt.R;
+import com.example.szoftverprojekt.Object.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -42,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
                 emailtext=email.getText().toString().trim();
                 passwordtext=password.getText().toString().trim();
                 confirmpasswordtext=confirmpassword.getText().toString().trim();
-
                 if(check(nametext,emailtext,passwordtext,confirmpasswordtext))
                 {
                     addUser();

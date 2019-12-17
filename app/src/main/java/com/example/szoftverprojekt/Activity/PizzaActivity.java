@@ -1,17 +1,18 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.media.audiofx.AudioEffect;
 import android.os.Bundle;
 import android.util.Log;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
+import com.example.szoftverprojekt.Adapter.MyRecyclerViewAdapter;
+import com.example.szoftverprojekt.Object.Product;
+import com.example.szoftverprojekt.Interface.ProductInterface;
+import com.example.szoftverprojekt.R;
+import com.example.szoftverprojekt.Object.ResultSingleton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PizzaActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class PizzaActivity extends AppCompatActivity {
             result.insertresult(product);
             ArrayList<Product> xy=result.getresult();
             Product x=xy.get(0);
-            Log.d("xxxxx",x.name);
+            //Log.d("xxxxx",x.name);
         }
     };
     private RecyclerView recyclerView;
@@ -72,8 +72,8 @@ public class PizzaActivity extends AppCompatActivity {
                     Log.d("TAAAAAAAG", name);
                     Log.d("BBBBBBBBBBB", price);
                     Log.d("CCCCCCCCCCC", description);
-                    Product pizza = new Product(name,price,description);
-                    pizzaList.add(pizza);
+                    Product burger = new Product(name,price,description);
+                    pizzaList.add(burger);
 
 
 

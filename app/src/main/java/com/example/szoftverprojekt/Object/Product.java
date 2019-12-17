@@ -1,4 +1,4 @@
-package com.example.szoftverprojekt;
+package com.example.szoftverprojekt.Object;
 
 import android.media.Image;
 
