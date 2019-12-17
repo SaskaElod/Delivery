@@ -1,37 +1,31 @@
 package com.example.szoftverprojekt;
 
 public class User {
-    String userID;
-    String userName;
-    String userEmail;
-    String userPassword;
+    private String email;
+    private String password;
 
+    public String getEmail() {
+        return email;
+    }
 
-    public User()
-    {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+    public  User(){
 
     }
 
-    public User(String userID, String userName, String userEmail, String userPassword) {
-        this.userID = userID;
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
 }
