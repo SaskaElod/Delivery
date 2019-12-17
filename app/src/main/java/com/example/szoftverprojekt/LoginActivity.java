@@ -31,13 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.edt_Password);
         login=(Button)findViewById(R.id.btn_Login);
         ref = FirebaseDatabase.getInstance().getReference().child("users");
-       /* String pin;
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnLogin(v);
-            }
-        });*/
+
 
 
     }
@@ -45,48 +39,52 @@ public class LoginActivity extends AppCompatActivity {
     String userID;
     public void btnLogin(View view)
     {
-        userID=name.getText().toString();
-        pin=password.getText().toString();
-        if(ref.child(userID)!=null){
-        ref.child(userID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user=dataSnapshot.getValue(User.class);
-                if(pin.equals(user.getPassword()))
-                {
-                    Toast.makeText(getBaseContext(),"Login was succesful!",Toast.LENGTH_LONG).show();
-                    Intent start=new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(start);
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-    else
+        String nametext=name.getText().toString().trim();;
+        String passwordtext=password.getText().toString().trim();;
+        if(!check(nametext,passwordtext))
         {
-            Toast.makeText(getBaseContext(),"Student doesn't exist!",Toast.LENGTH_LONG).show();
-        }
-    }
-/*
-    boolean check(String emailtext,String passwordtext)
-    {
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if(emailtext.isEmpty())
-        {   Toast.makeText(getBaseContext(),"Email field is empty!",Toast.LENGTH_LONG).show();
-            return false;
+            userID=name.getText().toString();
+            pin=password.getText().toString();
+            if(ref.child(userID)!=null){
+                ref.child(userID).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user=dataSnapshot.getValue(User.class);
+                        if(pin.equals(user.getPassword()))
+                        {
+                            Toast.makeText(getBaseContext(),"Login was succesful!",Toast.LENGTH_LONG).show();
+                            Intent start=new Intent(LoginActivity.this, MenuActivity.class);
+                            startActivity(start);
+                        }
+                        else
+                        {
+                            Toast.makeText(getBaseContext(),"Enter the correct pin...!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(getBaseContext(),"User doesn't exist!",Toast.LENGTH_LONG).show();
+            }
         }
         else
-        if(!emailtext.matches(emailPattern))
         {
-            Toast.makeText(getBaseContext(),"Email is invalid!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    boolean check(String emailtext,String passwordtext)
+    {
+
+        if(emailtext.isEmpty())
+        {   Toast.makeText(getBaseContext(),"Name field is empty!",Toast.LENGTH_LONG).show();
             return false;
         }
         else
@@ -98,5 +96,5 @@ public class LoginActivity extends AppCompatActivity {
             return false;
 
         }
-    }*/
+    }
 }
