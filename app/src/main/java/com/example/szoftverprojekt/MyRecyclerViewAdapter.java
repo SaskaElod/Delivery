@@ -48,6 +48,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.name.setText(one.getName());
         holder.description.setText(one.getDescription());
         holder.price.setText(one.getPrice());
+
     }
 
     // total number of rows

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,12 @@ public class PizzaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter=new MyRecyclerViewAdapter(getBaseContext(), productList,url);
         recyclerView.setAdapter(adapter);
-
+        adapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(String pizzaname, String pizzaprice) {
+                    String name=pizzaname,price=pizzaprice;
+                    Log.d("aaaaaaaa",pizzaname);
+            }
+        });
     }
 }
