@@ -10,6 +10,11 @@ public class Product {
     public Product(){
 
     }
+    public  Product (String name,String price)
+    {
+        this.name=name;
+        this.price=price;
+    }
 
     public Product(String name, String price, String description){
         this.name=name;

@@ -19,16 +19,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private Context context;
     private ArrayList<Product> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private ProductInterface mClickListener;
     private String url;
+    private String productname,productprice;
+    private Product product;
 
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url) {
+    MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url,ProductInterface mClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context=context;
         this.url=url;
+        this.mClickListener=mClickListener;
     }
 
     // inflates the row layout from xml when needed
@@ -59,11 +62,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         ImageView picture;
         TextView name,description,price;
         Button addbutton;
-
         ViewHolder(View itemView) {
             super(itemView);
             picture = itemView.findViewById(R.id.pizzaimage);
@@ -74,15 +76,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             addbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    onClickButton(v);
                 }
             });
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(name.getText().toString(),price.getText().toString());
+        public void onClickButton(View view) {
+            //if (mClickListener != null) mClickListener.onItemClick(name.getText().toString(),price.getText().toString());
+            int position=getLayoutPosition();
+            product=mData.get(position);
+            productname=product.name;
+            productprice=product.price;
+            mClickListener.onItemClick(productname,productprice);
         }
     }
 
@@ -91,13 +97,5 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 //        return mData.get(id);
 //    }
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(String pizzaname,String pizzaprice);
-    }
 }

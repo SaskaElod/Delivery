@@ -23,13 +23,25 @@ import java.util.List;
 
 public class PizzaActivity extends AppCompatActivity {
 
-
+    String name,price,description;
+    private ResultSingleton result=ResultSingleton.getResult();
+    ProductInterface productInterface=new ProductInterface() {
+        @Override
+        public void onItemClick(String pizzaname, String pizzaprice) {
+            name=pizzaname;
+            price=pizzaprice;
+            Product product=new Product(name,price);
+            result.insertresult(product);
+            ArrayList<Product> xy=result.getresult();
+            Product x=xy.get(0);
+            Log.d("xxxxx",x.name);
+        }
+    };
     private RecyclerView recyclerView;
     private MyRecyclerViewAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static ArrayList<Product> pizzaList=new ArrayList<>();
     DatabaseReference databaseUsers;
-    String name,price,description;
     private String url ="http://www.pizzativoli.ro/images/menu/Chicken-Pizza.jpg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +60,7 @@ public class PizzaActivity extends AppCompatActivity {
         Product pizza10=new Product("Amici's Combo Pizza","18 lej","Pepperoni, meatball, bacon, sautéed mushrooms, and black olives.");
         Product pizza11=new Product("Spicy Pepper Chicken Pizza","20 lej","Sliced chicken breast, roasted red peppers, caramelized onions, cilantro, oregano, and hot red pepper flakes. No tomato sauce.");
         Product pizza12=new Product("Trentino Pizza","25 lej","Mozzarella, parmesan, crumbled feta, baby spinach, red onions, pancetta, herbs, and meyer lemon olive oil. No tomato sauce.");
-
         databaseUsers=FirebaseDatabase.getInstance().getReference().child("pizzas");
-
         ValueEventListener eventListener= new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -71,7 +81,7 @@ public class PizzaActivity extends AppCompatActivity {
                 Log.d("FFFFFFF", String.valueOf(pizzaList));
                 recyclerView=findViewById(R.id.rvpizza);
                 recyclerView.setLayoutManager(new LinearLayoutManager(PizzaActivity.this));
-                adapter=new MyRecyclerViewAdapter(getBaseContext(),pizzaList,url);
+                adapter=new MyRecyclerViewAdapter(getBaseContext(),pizzaList,url,productInterface);
                 recyclerView.setAdapter(adapter);
             }
 
