@@ -19,6 +19,9 @@
         android:textSize="25dp"
         app:layout_constraintLeft_toRightOf="@id/pizzaimage"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:textAlignment="center"
         />
     <TextView
         android:id="@+id/pizzadescription"
@@ -27,6 +30,9 @@
         app:layout_constraintTop_toBottomOf="@id/pizzaname"
         app:layout_constraintLeft_toRightOf="@id/pizzaimage"
         android:textSize="15dp"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:textAlignment="center"
         />
     <TextView
         android:id="@+id/pizzaprice"
@@ -34,6 +40,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/addbutton"
         app:layout_constraintRight_toRightOf="parent"
+        android:textColorHint="#fff"
+        android:textColor="#fff"
+        android:textAlignment="center"
         />
     <Button
         android:id="@+id/addbutton"

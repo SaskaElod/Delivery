@@ -4,52 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundimage"
     tools:context=".Activity.MenuActivity">
+
 
     <Button
         android:id="@+id/pizza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/burger"
         android:text="Pizzas"
         android:textSize="30dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/burger"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/burger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pizza"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/other"
         android:text="Burgers"
         android:textSize="30dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/other"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pizza" />
+
     <Button
         android:id="@+id/other"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Others"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@id/result"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/burger"
-        android:text="Others"
-        android:textSize="30dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/burger" />
 
     <Button
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Result"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/other"
-        android:text="Result"
-        android:textSize="30dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/other" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

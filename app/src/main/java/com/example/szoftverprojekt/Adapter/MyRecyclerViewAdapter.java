@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,6 +76,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             name = itemView.findViewById(R.id.pizzaname);
             description = itemView.findViewById(R.id.pizzadescription);
             price=itemView.findViewById(R.id.pizzaprice);
+
             addbutton=itemView.findViewById(R.id.addbutton);
             addbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,6 +94,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             productname=product.getName();
             productprice=product.getPrice();
             mClickListener.onItemClick(productname,productprice);
+            Toast.makeText(context, "Food Added", Toast.LENGTH_SHORT).show();
         }
     }
 
