@@ -11,26 +11,26 @@
         android:id="@+id/pizza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/burger"
         android:text="Pizzas"
         android:textSize="30dp"
         android:background="@drawable/mybutton"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/burger"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/burger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pizza"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/other"
         android:text="Burgers"
         android:textSize="30dp"
         android:background="@drawable/mybutton"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/other"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pizza" />
+
     <Button
         android:id="@+id/other"
         android:layout_width="wrap_content"

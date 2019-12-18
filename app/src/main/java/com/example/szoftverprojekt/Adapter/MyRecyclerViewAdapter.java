@@ -68,7 +68,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         ImageView picture;
         TextView name, description, price;
         Button addbutton;
-
         ViewHolder(View itemView) {
             super(itemView);
             picture = itemView.findViewById(R.id.pizzaimage);
