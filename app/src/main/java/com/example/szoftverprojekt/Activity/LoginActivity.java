@@ -42,10 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void btnLogin(View view) {
         String nametext = name.getText().toString().trim();
-        ;
         String passwordtext = password.getText().toString().trim();
-        ;
-        if (!check(nametext, passwordtext)) {
+        if (check(nametext, passwordtext)) {
             userID = name.getText().toString();
             pin = password.getText().toString();
             if (ref.child(userID) != null) {
@@ -102,8 +100,9 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Password field is empty!", Toast.LENGTH_LONG).show();
                 return false;
             }
-            return false;
+
 
         }
+        return true;
     }
 }
