@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.szoftverprojekt.Object.Product;
 import com.example.szoftverprojekt.Interface.ProductInterface;
+import com.example.szoftverprojekt.Object.Product;
 import com.example.szoftverprojekt.R;
 
 import java.util.ArrayList;
@@ -24,17 +24,17 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private LayoutInflater mInflater;
     private ProductInterface mClickListener;
     private String url;
-    private String productname,productprice;
+    private String productname, productprice;
     private Product product;
 
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url,ProductInterface mClickListener) {
+    public MyRecyclerViewAdapter(Context context, ArrayList<Product> data, String url, ProductInterface mClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-        this.context=context;
-        this.url=url;
-        this.mClickListener=mClickListener;
+        this.context = context;
+        this.url = url;
+        this.mClickListener = mClickListener;
     }
 
     // inflates the row layout from xml when needed
@@ -47,9 +47,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //db=new DatabaseFull(getCon);
-        //holder.myTextView.setText(animal);
-        Product one=mData.get(position);
+        Product one = mData.get(position);
         Glide.with(context).load(url).into(holder.picture);
         holder.name.setText(one.getName());
         holder.description.setText(one.getDescription());
@@ -65,40 +63,34 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder  {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView picture;
-        TextView name,description,price;
+        TextView name, description, price;
         Button addbutton;
+
         ViewHolder(View itemView) {
             super(itemView);
             picture = itemView.findViewById(R.id.pizzaimage);
             name = itemView.findViewById(R.id.pizzaname);
             description = itemView.findViewById(R.id.pizzadescription);
-            price=itemView.findViewById(R.id.pizzaprice);
-            addbutton=itemView.findViewById(R.id.addbutton);
+            price = itemView.findViewById(R.id.pizzaprice);
+            addbutton = itemView.findViewById(R.id.addbutton);
             addbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClickButton(v);
                 }
             });
-            //itemView.setOnClickListener(this);
         }
 
         public void onClickButton(View view) {
-            //if (mClickListener != null) mClickListener.onItemClick(name.getText().toString(),price.getText().toString());
-            int position=getLayoutPosition();
-            product=mData.get(position);
-            productname=product.getName();
-            productprice=product.getPrice();
-            mClickListener.onItemClick(productname,productprice);
+            int position = getLayoutPosition();
+            product = mData.get(position);
+            productname = product.getName();
+            productprice = product.getPrice();
+            mClickListener.onItemClick(productname, productprice);
         }
     }
-
-    // convenience method for getting data at click position
-//    String getItem(int id) {
-//        return mData.get(id);
-//    }
 
 
 }

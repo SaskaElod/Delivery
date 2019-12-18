@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.szoftverprojekt.Object.Product;
-import com.example.szoftverprojekt.R;
 import com.example.szoftverprojekt.Object.ResultSingleton;
+import com.example.szoftverprojekt.R;
 
 import java.util.ArrayList;
 
@@ -39,8 +39,6 @@ public class ResultRecyclerViewAdapter extends RecyclerView.Adapter<ResultRecycl
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ResultRecyclerViewAdapter.ViewHolder holder, int position) {
-        //db=new DatabaseFull(getCon);
-        //holder.myTextView.setText(animal);
         Product one = mData.get(position);
         holder.name.setText(one.getName());
         holder.price.setText(one.getPrice());
@@ -70,7 +68,6 @@ public class ResultRecyclerViewAdapter extends RecyclerView.Adapter<ResultRecycl
                     onClickButton(v);
                 }
             });
-            //itemView.setOnClickListener(this);
         }
 
         public void onClickButton(View view) {

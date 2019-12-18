@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/burger"
         android:text="Pizzas"
         android:textSize="30dp"
+        android:background="@drawable/mybutton"
         />
     <Button
         android:id="@+id/burger"
@@ -27,6 +28,7 @@
         app:layout_constraintBottom_toTopOf="@+id/other"
         android:text="Burgers"
         android:textSize="30dp"
+        android:background="@drawable/mybutton"
         />
     <Button
         android:id="@+id/other"
@@ -38,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/burger"
         android:text="Others"
         android:textSize="30dp"
+        android:background="@drawable/mybutton"
         />
 
     <Button
@@ -50,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/other"
         android:text="Result"
         android:textSize="30dp"
+        android:background="@drawable/mybutton"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
